@@ -1,2 +1,3 @@
-# stopwatchy
-A small stopwatch library
+# Stopwatchy
+
+A small stopwatch library.
