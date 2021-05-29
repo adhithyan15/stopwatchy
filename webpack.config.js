@@ -1,7 +1,7 @@
 const path = require('path');
 
-module.exports = {
-  entry: './src/index.ts',
+const browserConfig = {
+  entry: './src/browser_entry_point.ts',
   module: {
     rules: [
       {
@@ -20,3 +20,27 @@ module.exports = {
   },
   mode: "production"
 };
+
+const serverConfig = {
+  target: 'node',
+  entry: './src/node_entry_point.ts',
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+  output: {
+    filename: 'bundle.node.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  mode: "production"
+}
+
+module.exports = [browserConfig, serverConfig];
